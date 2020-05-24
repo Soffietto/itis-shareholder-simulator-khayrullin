@@ -1,0 +1,83 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 000000-create-table-bet
+      author: Khayrullin Azat
+      changes:
+        - createTable:
+            tableName: bet
+            columns:
+              - column: { name: id, type: uuid }
+              - column: { name: bet_type_id, type: uuid }
+              - column: { name: user_id, type: uuid }
+              - column: { name: amount, type: double }
+              - column: { name: date_time, type: timestamp }
+              - column: { name: win, type: boolean }
+              - column: { name: actual_stock_value, type: double }
+              - column: { name: bet_status, type: varchar(20) }
+
+  - changeSet:
+      id: 000000-create-constraint-bet
+      author: Khayrullin Azat
+      changes:
+        - addNotNullConstraint:
+            tableName: bet
+            columnName: id
+            columnDataType: uuid
+        - addPrimaryKey:
+            columnNames: id
+            tableName: bet
+        - addForeignKonstraint:
+            constraintName: fk_bet_type
+            baseColumnName: bet_type_id
+            baseTableName: bet
+            referenceColumnNames: id
+            referenceTableName: bet_type
+        - addForeignKonstraint:
+            constraintName: fk_bet_user
+            baseColumnName: user_id
+            baseTableName: bet
+            referenceColumnNames: id
+            referenceTableName: users
+
+  - changeSet:
+      id: 000000-create-comments-bet
+      author: Khayrullin Azat
+      changes:
+        - changes:
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on table bet is 'Ставка';
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on column bet.id is 'Идентификатор';
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on column bet.bet_type_id is 'Идентификатор типа ставки';
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on column bet.user_id is 'Идентификатор пользователя';
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on column bet.amount is 'Сумма средств';
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on column bet.date_time is 'Дата и время ставки';
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on column bet.win is 'Победа в ставке или нет';
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on column bet.actual_stock_value is 'Стоимость акции на момент игры';
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on column bet.bet_status is 'Статус ставки';

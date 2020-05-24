@@ -1,0 +1,17 @@
+server:
+  port: 8081
+  max-http-header-size: 98304
+
+spring:
+  application:
+    name: shareholder-simulator
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/shareholder-simulator
+    username: postgres
+    password: postgres
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+      use-new-id-generator-mappings: true

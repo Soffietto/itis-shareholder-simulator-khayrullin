@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Симулятор акционера</title>
+</head>
+
+<body>
+<form action="#" method="post" th:action="@{/main/balance}" th:object="${balanceForm}">
+    <h1>Пополнение баланса</h1>
+    <h3 th:text="'Ваш баланс: ' + ${currentUserBalance}"></h3>
+
+    <table>
+        <tr>
+            <td>Пожалуйста, укажите сумму которую хотите добавить:</td>
+        </tr>
+        <tr>
+            <td><input type="text" th:field="*{additionalBalance}" name="additional_balance"/>Руб</td>
+        </tr>
+    </table>
+    <input type="submit" value="Пополнить" />
+</form>
+<a href="/main">Назад</a>
+</body>
+</html>

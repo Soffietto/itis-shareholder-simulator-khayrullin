@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Симулятор акционера</title>
+</head>
+
+<body>
+    <h1 th:text="'Добро пожаловать, ' + ${currentUserName}"></h1>
+    <h3 th:text="'Ваш баланс: ' + ${currentUserBalance}"></h3>
+    <a href="/main/balance">Пополнить</a>
+    <a href="/main/game">Играть</a>
+    <a href="/logout">Выйти</a>
+    <hr/>
+    <table style="border: solid black 1px">
+        <caption>Ваши прошлые ставки:</caption>
+        <tr style="border: black solid 1px">
+            <td>Сумма ставки</td>
+            <td>Статус</td>
+            <td>Дата-время ставки</td>
+        </tr>
+        <tr th:each="bet : ${bets}">
+            <td th:text="${bet.getAmount()}"></td>
+            <td th:text="${bet.getBetStatus()}"></td>
+            <td th:text="${bet.getDateTime()}"></td>
+        </tr>
+    </table>
+</body>
+</html>

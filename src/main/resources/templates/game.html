@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Симулятор акционера</title>
+</head>
+
+<body>
+<form action="#" method="post" th:action="@{/main/game}" th:object="${betForm}">
+    <h1>Ставка</h1>
+    <h3 th:text="'Текущая цена акции:' + ${currentStockValue} + 'руб'"></h3>
+    <h3 th:text="'Ваш баланс: ' + ${currentUserBalance} + 'руб'"></h3>
+    <h2 th:if="${error != null}" th:text="${error}" style="color: red"></h2>
+    <div th:if="${!isInGame}">
+        <h4>Пожалуйста, укажите прогноз и ставку:</h4>
+
+        <table>
+            <tr>
+                <ul>
+                    <li th:each="betType : ${betTypes}">
+                        <input type="radio" th:field="${betForm.betTypeId}" th:value="${betType.id}"/>
+                        <label th:for="${betType.id}" th:text="${betType.name}"></label>
+                    </li>
+                </ul>
+            </tr>
+            <tr>
+                <td>Сумма:</td>
+                <td><input type="text" th:field="*{amount}" name="amount"/>Руб</td>
+            </tr>
+        </table>
+        <input type="submit" value="Поставить"/>
+    </div>
+    <div th:if="${isInGame}">
+        <h3 style="color: red">Ставка уже поставлена</h3>
+    </div>
+</form>
+<a href="/main">Назад</a>
+</body>
+</html>

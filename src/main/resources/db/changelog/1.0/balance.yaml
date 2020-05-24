@@ -1,0 +1,57 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 000000-create-table-balance
+      author: Khayrullin Azat
+      changes:
+        - createTable:
+            tableName: balance
+            columns:
+              - column: { name: id, type: uuid }
+              - column: { name: user_id, type: uuid }
+              - column: { name: date_time, type: timestamp }
+              - column: { name: amount, type: double }
+
+  - changeSet:
+      id: 000000-create-constraint-balance
+      author: Khayrullin Azat
+      changes:
+        - addNotNullConstraint:
+            tableName: balance
+            columnName: id
+            columnDataType: uuid
+        - addPrimaryKey:
+            columnNames: id
+            tableName: balance
+        - addForeignKonstraint:
+            constraintName: fk_balance_user
+            baseColumnName: user_id
+            baseTableName: balance
+            referenceColumnNames: id
+            referenceTableName: users
+
+  - changeSet:
+      id: 000000-create-comments-balance
+      author: Khayrullin Azat
+      changes:
+        - changes:
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on table balance is 'Баланс пользователей';
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on column balance.id is 'Идентификатор';
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on column balance.user_id is 'Идентификатор пользователя';
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on column balance.date_time is 'Дата и время транзакции';
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on column balance.amount is 'Сумма средств';

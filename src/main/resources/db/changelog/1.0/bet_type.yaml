@@ -1,0 +1,76 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 000000-create-table-bet_type
+      author: Khayrullin Azat
+      changes:
+        - createTable:
+            tableName: bet_type
+            columns:
+              - column: { name: id, type: uuid }
+              - column: { name: name, type: text }
+              - column: { name: bet_type, type: varchar(255) }
+
+  - changeSet:
+      id: 000000-create-constraint-bet_type
+      author: Khayrullin Azat
+      changes:
+        - addNotNullConstraint:
+            tableName: bet_type
+            columnName: id
+            columnDataType: uuid
+        - addPrimaryKey:
+            columnNames: id
+            tableName: bet_type
+
+  - changeSet:
+      id: 000000-create-comments-bet_type
+      author: Khayrullin Azat
+      changes:
+        - changes:
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on table bet_type is 'Тип ставки';
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on column bet_type.id is 'Идентификатор';
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on column bet_type.name is 'Название типа ставки';
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on column bet_type.bet_type is 'Системное имя типа ставки';
+
+  - changeSet:
+      id: 000000-insert-records-bet_type
+      author: Khayrullin Azat
+      changes:
+        - changes:
+            - insert:
+                tableName: bet_type
+                columns:
+                  - column:
+                      name:  id
+                      value:  'cc39d25e-8b1a-4a3f-95b6-add6df8f873f'
+                  - column:
+                      name:  name
+                      value:  'Увеличится'
+                  - column:
+                      name:  bet_type
+                      value:  RAISE
+            - insert:
+                tableName: bet_type
+                columns:
+                  - column:
+                      name:  id
+                      value:  '330eceb4-9c34-49e6-bc20-403c39923bac'
+                  - column:
+                      name:  name
+                      value:  'Уменьшится'
+                  - column:
+                      name:  bet_type
+                      value:  DROP

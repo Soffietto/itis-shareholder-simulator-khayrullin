@@ -1,0 +1,9 @@
+databaseChangeLog:
+
+  - include: { relativeToChangelogFile: true, file: users.yaml }
+  - include: { relativeToChangelogFile: true, file: user_roles.yaml }
+  - include: { relativeToChangelogFile: true, file: balance.yaml }
+  - include: { relativeToChangelogFile: true, file: bet_type.yaml }
+  - include: { relativeToChangelogFile: true, file: bet.yaml }
+
+

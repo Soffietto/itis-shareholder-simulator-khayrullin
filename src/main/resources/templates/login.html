@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Симулятор акционера Сберабанк</title>
+</head>
+
+<body>
+    <h1>Пожалуйста, авторизуйтесь</h1>
+    <h2 th:if="${error}" style="color: red">Неверный логин или пароль</h2>
+<form action="#" method="post" th:action="@{/login}" th:object="${loginForm}">
+    <table>
+        <tr>
+            <td>Логин</td>
+            <td><input type="text" th:field="*{login}" name="login"/></td>
+        </tr>
+        <tr>
+            <td>Пароль</td>
+            <td><input type="password" th:field="*{password}" name="password"/></td>
+        </tr>
+        <tr>
+            <td>Запомнить меня:</td>
+            <td><input type="checkbox" name="remember-me" /></td>
+        </tr>
+    </table>
+    <input type="submit" value="Авторизация" />
+</form>
+<a href="/register">Регистрация</a>
+</body>
+</html>

@@ -1,0 +1,48 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 000000-create-table-user_roles
+      author: Khayrullin Azat
+      changes:
+        - createTable:
+            tableName: user_roles
+            columns:
+              - column: { name: user_id, type: uuid }
+              - column: { name: role, type: integer }
+
+  - changeSet:
+      id: 000000-create-constraint-user_roles
+      author: Khayrullin Azat
+      changes:
+        - addNotNullConstraint:
+            tableName: user_roles
+            columnName: user_id
+            columnDataType: uuid
+        - addPrimaryKey:
+            columnNames: user_id
+            tableName: user_roles
+        - addForeignKonstraint:
+            constraintName: fk_user_roles
+            baseColumnName: user_id
+            baseTableName: user_roles
+            referenceColumnNames: id
+            referenceTableName: users
+
+
+  - changeSet:
+      id: 000000-create-comments-user_roles
+      author: Khayrullin Azat
+      changes:
+        - changes:
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on table user_roles is 'Роли';
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on column user_roles.user_id is 'Идентификатор пользователя';
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on column user_roles.role is 'Роль';

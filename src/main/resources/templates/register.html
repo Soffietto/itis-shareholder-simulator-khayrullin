@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Симклятор акционера Сбербанк</title>
+</head>
+
+<body>
+<h1>Регистрация</h1>
+<form action="#" method="post" th:action="@{/register}" th:object="${user}">
+    <table>
+        <tr>
+            <td>Имя</td>
+            <td><input type="text" th:field="*{name}" name="login"/></td>
+        </tr>
+        <tr>
+            <td>Логин</td>
+            <td><input type="text" th:field="*{login}" name="login"/></td>
+        </tr>
+        <tr>
+            <td>Пароль</td>
+            <td><input type="password" th:field="*{password}" name="password"/></td>
+        </tr>
+    </table>
+    <input type="submit" value="Регистрация" />
+</form>
+</body>
+</html>

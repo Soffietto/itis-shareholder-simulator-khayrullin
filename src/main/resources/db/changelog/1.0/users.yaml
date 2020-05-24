@@ -1,0 +1,52 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 000000-create-table-users
+      author: Khayrullin Azat
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column: { name: id, type: uuid }
+              - column: { name: name, type: varchar(255) }
+              - column: { name: login, type: varchar(255) }
+              - column: { name: password, type: varchar(255) }
+
+  - changeSet:
+      id: 000000-create-constraint-users
+      author: Khayrullin Azat
+      changes:
+        - addNotNullConstraint:
+            tableName: users
+            columnName: id
+            columnDataType: uuid
+        - addPrimaryKey:
+            columnNames: id
+            tableName: users
+
+  - changeSet:
+      id: 000000-create-comments-users
+      author: Khayrullin Azat
+      changes:
+        - changes:
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on table users is 'Пользователи';
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on column users.id is 'Идентификатор';
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on column users.name is 'ФИО';
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on column users.login is 'Логин';
+            - sql:
+                dbms: postgresql
+                stripComments: true
+                sql: comment on column users.password is 'Пароль';
+
