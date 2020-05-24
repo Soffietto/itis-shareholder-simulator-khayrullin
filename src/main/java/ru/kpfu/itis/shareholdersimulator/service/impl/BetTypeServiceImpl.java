@@ -1,4 +1,4 @@
-package ru.kpfu.itis.shareholdersimulator.dao.impl;
+package ru.kpfu.itis.shareholdersimulator.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
