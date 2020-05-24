@@ -6,7 +6,7 @@ import lombok.experimental.UtilityClass;
 public class UrlUtil {
     private static final String REDIRECT = "redirect:";
 
-    public String redirect(String url) {
+    public static String redirect(String url) {
         return REDIRECT + url;
     }
 }
