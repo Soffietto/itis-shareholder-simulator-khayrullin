@@ -15,3 +15,5 @@ spring:
     hibernate:
       ddl-auto: validate
       use-new-id-generator-mappings: true
+  resources:
+    add-mappings: true
