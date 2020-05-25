@@ -17,6 +17,7 @@ import ru.kpfu.itis.shareholdersimulator.exception.TinkoffStockException;
 import ru.kpfu.itis.shareholdersimulator.service.StocksService;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -51,7 +52,7 @@ public class StocksServiceImpl implements StocksService {
         log.info("Updating stock value");
 
         previousStockValue = currentStockValue;
-        currentStockValue += 0.01;
+        currentStockValue += -1 + (1 + 1) * new Random().nextDouble();
 //        currentStockValue = getCurrentStockValueFromTinkoff();
 
         log.info("Old value: " + previousStockValue);
