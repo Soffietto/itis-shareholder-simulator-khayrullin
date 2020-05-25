@@ -3,6 +3,7 @@ package ru.kpfu.itis.shareholdersimulator.controller.constants;
 public interface Urls {
 
     String MAIN = "/main";
+    String TINKOFF_STOCK_VALUE = "https://api-invest.tinkoff.ru/openapi/portfolio";
 
     interface User {
         String LOGIN = "/login";
