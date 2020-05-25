@@ -3,10 +3,12 @@ package ru.kpfu.itis.shareholdersimulator.dao.impl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import ru.kpfu.itis.shareholdersimulator.dao.DaoServiceTest;
 import ru.kpfu.itis.shareholdersimulator.entity.User;
+import ru.kpfu.itis.shareholdersimulator.exception.NotFoundInDbException;
 import ru.kpfu.itis.shareholdersimulator.repository.UserRepository;
 
 import java.util.Optional;
@@ -23,7 +25,7 @@ public class UserDaoServiceImplTest implements DaoServiceTest {
     @InjectMocks
     private UserDaoServiceImpl userDaoService;
 
-    @InjectMocks
+    @Mock
     private UserRepository userRepository;
 
     @Test
@@ -36,7 +38,7 @@ public class UserDaoServiceImplTest implements DaoServiceTest {
         verify(userRepository).findByLogin(Mockito.anyString());
     }
 
-    @Test
+    @Test(expected = NotFoundInDbException.class)
     public void findByLoginTestFailed() {
         userDaoService.findByLogin(TEST_STRING);
     }
@@ -58,6 +60,6 @@ public class UserDaoServiceImplTest implements DaoServiceTest {
         boolean result = userDaoService.existByLogin(TEST_STRING);
 
         assertTrue(result);
-        verify(userRepository).findByLogin(Mockito.anyString());
+        verify(userRepository).existsByLogin(Mockito.anyString());
     }
 }

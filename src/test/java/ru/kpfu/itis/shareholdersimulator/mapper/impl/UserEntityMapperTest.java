@@ -26,6 +26,7 @@ public class UserEntityMapperTest implements EntityMapperTest {
         RegisterDto registerDto = new RegisterDto();
         registerDto.setName(TEST_STRING);
         registerDto.setLogin(TEST_STRING);
+        registerDto.setPassword(TEST_STRING);
 
         User result = mapper.toEntity(registerDto);
 

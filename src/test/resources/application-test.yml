@@ -1,4 +1,5 @@
-security.enabled: false
+security:
+ enabled: false
 
 spring:
   application:

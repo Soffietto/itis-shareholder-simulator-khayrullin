@@ -57,7 +57,7 @@ public class StocksServiceImpl implements StocksService {
 
         log.info("Old value: " + previousStockValue);
         log.info("New value: " + currentStockValue);
-        log.info("Is raise: " + true);
+        log.info("Is raise: " + isRaise());
     }
 
     private Double getCurrentStockValueFromTinkoff() {

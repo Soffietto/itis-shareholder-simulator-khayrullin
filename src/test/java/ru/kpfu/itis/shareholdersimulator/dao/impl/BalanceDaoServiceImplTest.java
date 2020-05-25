@@ -34,7 +34,7 @@ public class BalanceDaoServiceImplTest implements DaoServiceTest {
         Optional<Balance> result = balanceDaoService.getBalanceByLogin(TEST_STRING);
 
         assertTrue(result.isPresent());
-        verify(balanceRepository).save(Mockito.any(Balance.class));
+        verify(balanceRepository).findBalanceByUserLogin(Mockito.anyString());
     }
 
     @Test
