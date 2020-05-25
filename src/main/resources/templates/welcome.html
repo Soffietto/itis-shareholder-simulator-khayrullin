@@ -12,19 +12,20 @@
     <h3 th:text="'Ваш баланс: ' + ${currentUserBalance}"></h3>
     <a href="/main/balance">Пополнить</a>
     <a href="/main/game">Играть</a>
-    <a href="/logout">Выйти</a>
     <hr/>
+    <h4>Ваши прошлые ставки:</h4>
     <table style="border: solid black 1px">
-        <caption>Ваши прошлые ставки:</caption>
         <tr style="border: black solid 1px">
-            <td>Сумма ставки</td>
-            <td>Статус</td>
-            <td>Дата-время ставки</td>
+            <td style="border: black solid 1px">Сумма ставки</td>
+            <td style="border: black solid 1px">Статус</td>
+            <td style="border: black solid 1px">Дата-время ставки</td>
+            <td style="border: black solid 1px">Победа</td>
         </tr>
         <tr th:each="bet : ${bets}">
-            <td th:text="${bet.getAmount()}"></td>
-            <td th:text="${bet.getBetStatus()}"></td>
-            <td th:text="${bet.getDateTime()}"></td>
+            <td style="border: black solid 1px" th:text="${bet.getAmount()}"></td>
+            <td style="border: black solid 1px" th:text="${bet.getBetStatus()}"></td>
+            <td style="border: black solid 1px" th:text="${bet.getDateTime()}"></td>
+            <td style="border: black solid 1px" th:text="${bet.isWin()}"></td>
         </tr>
     </table>
 </body>

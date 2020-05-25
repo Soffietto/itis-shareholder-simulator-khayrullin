@@ -26,16 +26,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity security) throws Exception {
         security.authorizeRequests()
                 .antMatchers(Urls.User.LOGIN, Urls.User.REGISTER).anonymous()
-                .antMatchers(Urls.MAIN + "*", Urls.MAIN + "/**").hasRole(Role.USER.toString());
+                .antMatchers(Urls.MAIN + "*", Urls.MAIN + "/**", Urls.User.LOGOUT).hasRole(Role.USER.toString());
 
         security.formLogin()
-                .loginPage("/login")
+                .loginPage(Urls.User.LOGIN)
                 .usernameParameter("login")
                 .defaultSuccessUrl(Urls.MAIN, true)
-                .failureUrl("/login?error=true")
+                .failureUrl(Urls.User.LOGIN + "?error=true")
                 .successHandler(authenticationSuccessHandler)
                 .and()
-                .logout().logoutSuccessUrl(Urls.User.LOGIN).deleteCookies("JSESSIONID")
+                .logout()
+                .logoutUrl(Urls.User.LOGOUT)
+                .logoutSuccessUrl(Urls.User.LOGIN).deleteCookies("JSESSIONID")
                 .and()
                 .rememberMe().key("uniqueAndSecret").rememberMeParameter("remember-me-new")
                 .and()

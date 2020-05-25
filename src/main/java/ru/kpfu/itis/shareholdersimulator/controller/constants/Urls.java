@@ -8,6 +8,7 @@ public interface Urls {
     interface User {
         String LOGIN = "/login";
         String REGISTER = "/register";
+        String LOGOUT = "/logout";
     }
 
     interface Balance {
