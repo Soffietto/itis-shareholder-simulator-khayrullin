@@ -54,7 +54,7 @@ public class GameServiceImpl implements GameService {
         ).isPresent();
     }
 
-    @Scheduled(fixedDelay = 60 * 1000)
+    @Scheduled(fixedDelay = 15 * 1000)
     private void updateBets() {
         List<Bet> bets = betDaoService.findAllNewBets();
         executorManager.execute(bets);

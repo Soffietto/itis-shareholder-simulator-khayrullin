@@ -29,7 +29,7 @@ public class StocksServiceImpl implements StocksService {
     private final RestTemplate restTemplate;
 
     private Double previousStockValue;
-    private Double currentStockValue = 183.85;
+    private Double currentStockValue = 191d;
 
     @Override
     public double getCurrentStockValue() {
@@ -46,12 +46,13 @@ public class StocksServiceImpl implements StocksService {
         return currentStockValue - previousStockValue;
     }
 
-    @Scheduled(fixedDelay = 60 * 1000)
+    @Scheduled(fixedDelay = 15 * 1000)
     private void setStockValue() {
         log.info("Updating stock value");
 
         previousStockValue = currentStockValue;
         currentStockValue += 0.01;
+//        currentStockValue = getCurrentStockValueFromTinkoff();
 
         log.info("Old value: " + previousStockValue);
         log.info("New value: " + currentStockValue);
